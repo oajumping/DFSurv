@@ -186,9 +186,9 @@ for seed in grid_params["seeds"]:
                 for alpha_contrastive in grid_params["alpha_contrastive"]:
 
                     file_names = [
-                        ("mrna", "data/cos/test_mrna.csv"),
-                        ("mirna", "data/sp/test_mi.csv"),
-                        ("meth", "data/pea/test_log_meth.csv")
+                        ("mrna", "sample/test_mrna.csv"),
+                        ("mirna", "sample/test_mi.csv"),
+                        ("meth", "sample/test_log_meth.csv")
                     ]
                     datasets = []
                     time_tensors = []
