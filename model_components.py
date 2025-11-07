@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# ---------- Denoising Diffusion 模块 ----------
+# ---------- Denoising Diffusion ----------
 class DenoisingDiffusion(nn.Module):
     def __init__(self, input_dim, num_timesteps=1000):
         super().__init__()
@@ -26,7 +26,7 @@ class DenoisingDiffusion(nn.Module):
         x = self.fc4(x)
         return x
 
-# ---------- Transformer 模块 ----------
+# ---------- Transformer ----------
 class TransformerModel(nn.Module):
     def __init__(self, input_dim, num_heads=4, num_layers=1):
         super().__init__()
@@ -40,7 +40,7 @@ class TransformerModel(nn.Module):
         x = self.transformer(x)
         return self.fc(x[:, -1, :]), x[:, -1, :]
 
-# ---------- DeepSurv 损失 ----------
+# ---------- DeepSurv ----------
 class DeepSurvLoss(nn.Module):
     def forward(self, predictions, y_time, y_event):
         eps = 1e-7
@@ -55,7 +55,7 @@ class DeepSurvLoss(nn.Module):
         loss = -torch.sum((pred_sorted - log_cumsum) * event_sorted) / (torch.sum(event_sorted) + eps)
         return loss
 
-# ---------- 对比学习损失 ----------
+# ---------- ContrastiveLoss ----------
 class ContrastiveLoss(nn.Module):
     def __init__(self, temperature=0.5):
         super().__init__()
@@ -70,7 +70,7 @@ class ContrastiveLoss(nn.Module):
         loss = F.cross_entropy(similarity_matrix, labels)
         return loss
 
-# ---------- 整体融合模型 ----------
+# ---------- CombinedModel ----------
 class CombinedModel(nn.Module):
     def __init__(self, input_dim1, input_dim2, input_dim3, hidden_dim):
         super().__init__()
