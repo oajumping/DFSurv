@@ -14,3 +14,4 @@ tqdm                              4.65.0
 ## Python Files Overview:
 train_pipeline.py: This is the primary framework file, run for cancer survival outcome prediction. The corresponding result can be found in the correspongding folder named "output_XXX".
 
+<img width="990" height="484" alt="image" src="https://github.com/user-attachments/assets/84e0d751-7510-4f78-8ca4-32ac182084bf" />
