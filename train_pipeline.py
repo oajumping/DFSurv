@@ -12,13 +12,13 @@ from utils import set_seed, initialize_weights, compute_ci, save_predictions
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# ---------- 超参数网格 ----------
+# ---------- grid_params ----------
 grid_params = {
     "seeds": [8],
     "learning_rates": [1e-2],
     "batch_sizes": [1024],
     "hidden_dims": [500],
-    "alpha_contrastive": [0.8]
+    "alpha_contrastive": [0.5]
 }
 
 overall_results_file = 'grid_search_results.csv'
@@ -26,7 +26,7 @@ with open(overall_results_file, 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(['seed', 'learning_rate', 'batch_size', 'hidden_dim', 'alpha_contrastive', 'max_mean_ci'])
 
-# ---------- 主训练循环 ----------
+# ---------- training ----------
 for seed in grid_params["seeds"]:
     for lr in grid_params["learning_rates"]:
         for batch_size in grid_params["batch_sizes"]:
